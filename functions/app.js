@@ -3,7 +3,7 @@ const path = require ('path')
 const app = express()
 const bodyParser = require('body-parser')
 const todoRoutes = require('../routes/todo')
-
+const serverless = require('serverless-http');
 app.use(bodyParser.urlencoded({ extended : false }))
 app.set ('views',path.join(__dirname,'views'))
 app.set ('view engine', 'ejs')
@@ -23,9 +23,8 @@ app.post('/',(req,res) =>{
   res.redirect('/')
 })
 
-app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/.netlify/functions/server');  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')))
 
 module.exports = app;
 module.exports.handler = serverless(app);
-const serverless = require('serverless-http');
