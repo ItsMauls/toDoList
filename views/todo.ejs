@@ -1,0 +1,37 @@
+<%- include('./includes/header') %>
+    
+    
+   <div id="date" class="mx-auto text-center rounded-lg w-1/4 my-16 bg-purple-500
+        drop-shadow-lg py-4">
+        <h1 class=" text-white text-2xl font-semibold tracking-wide">
+        <%= dates %>
+        </h1>
+   </div>
+
+   <div class="bg-white rounded-lg w-1/4 mx-auto
+        drop-shadow-xl shadow-black">
+        <% if (!isFilled) {%>
+            <h1 class="text-2xl font-mono p-3 text-center">Enter Your To-Do-List</h1>
+        <% } else { %>
+        <ul class="px-5 py-1 text-lg font-semibold tracking-wide">
+           
+            <% for(let lists of allList) { %>
+                <li class="py-1 border-b-2 border-gray-3">
+                   
+                        <input type="checkbox" name="checkbox" class="peer">
+                        <label class="peer-checked:text-red-600 peer-checked:line-through">
+                        <%= lists.list %><label></li>
+            <% } %>  
+                <% } %>
+        </ul>
+        <footer class="bg-purple-200 p-2">
+            <form action="/" method="post">
+                <input type="text" class="w-5/6 px-3 rounded-md text-center 
+                focus:border-b-4 checked:line-clamp-1 default:border-purple-500 outline-none appearance-none focus:border-purple-500 text-lg tracking-wider" name="newList" autocomplete="off" placeholder="New List">
+                <button class="rounded-full border-white bg-purple-800 px-4 text-white text-lg ml-3 py-2
+                hover:scale-105 hover:border-white hover:bg-purple-600">></button>
+        </form>
+    </footer>
+   </div>
+
+   <%- include('./includes/footer') %>
